@@ -1,3 +1,9 @@
 @import "tailwindcss";
 
 @plugin "daisyui";
+
+.btn-primary ,
+.bg-primary{
+  background: #8437ff;
+  border: 0;
+}

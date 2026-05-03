@@ -6,6 +6,8 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { FiLogOut, FiMenu, FiX } from "react-icons/fi";
 import NavLink from "../utils/NavLink";
+import { FaHatWizard } from "react-icons/fa";
+import { IoRocketSharp } from "react-icons/io5";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -15,13 +17,13 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-//   dummy user
+  //   dummy user
   let user = false;
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 px-4 pt-3 md:px-6">
         {/* nav */}
-        <nav className="mx-auto max-w-6xl flex items-center justify-between h-14.5 px-4 rounded-2xl bg-white border border-gray-200 shadow-sm">
+        <nav className="mx-auto max-w-6xl flex items-center justify-between h-14.5 px-4 rounded-2xl backdrop-blur-2xl">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0">
             <motion.span
@@ -29,11 +31,9 @@ export default function Navbar() {
               whileTap={{ scale: 0.95 }}
               className="flex h-8 w-8 items-center justify-center rounded-xl bg-linear-to-br from-violet-600 to-violet-400 shrink-0"
             >
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="white">
-                <path d="M8 2L14 6V10L8 14L2 10V6L8 2Z" />
-              </svg>
+              <IoRocketSharp color="white"></IoRocketSharp>
             </motion.span>
-            <span className="text-[15px] font-bold tracking-tight text-gray-900">
+            <span className="text-xl font-bold tracking-tight text-gray-900">
               SkillSphere
             </span>
           </Link>
@@ -172,9 +172,6 @@ export default function Navbar() {
           )}
         </AnimatePresence>
       </header>
-
-      {/* Spacer for fixed header */}
-      <div className="h-20" />
     </>
   );
 }
