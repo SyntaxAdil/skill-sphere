@@ -23,7 +23,7 @@ export default function Navbar() {
     <>
       <header className="fixed inset-x-0 top-0 z-50 px-4 pt-3 md:px-6">
         {/* nav */}
-        <nav className="mx-auto max-w-6xl flex items-center justify-between h-14.5 px-4 rounded-2xl backdrop-blur-2xl">
+        <nav className="mx-auto max-w-6xl flex items-center justify-between h-14.5 px-4 rounded-2xl bg-white/80 backdrop-blur-md border border-violet-100 shadow-sm">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0">
             <motion.span
