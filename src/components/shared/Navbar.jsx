@@ -5,9 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { FiLogOut, FiMenu, FiX } from "react-icons/fi";
-import NavLink from "../utils/NavLink";
-import { FaHatWizard } from "react-icons/fa";
+
 import { IoRocketSharp } from "react-icons/io5";
+import NavLink from "./../../utils/NavLink";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
