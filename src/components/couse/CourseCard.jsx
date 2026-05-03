@@ -75,7 +75,7 @@ export default function CourseCard({ course, index = 0 }) {
             whileTap={{ scale: 0.97 }}
             className="w-full py-2.5 rounded-xl text-[13px] font-semibold text-white
               bg-linear-to-r from-violet-600 to-violet-400
-              transition-opacity hover:opacity-88"
+              transition-opacity hover:opacity-88 cursor-pointer"
           >
             View Details
           </motion.button>
