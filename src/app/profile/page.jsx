@@ -35,7 +35,7 @@ const MyProfile = async () => {
     .join("");
 
   return (
-    <section className="min-h-screen bg-gray-50 pt-24 pb-12 px-4">
+    <section className="min-h-screen bg-gray-50 pt-24 pb-12 px-4 -mb-25">
       <div className="max-w-4xl mx-auto space-y-5">
         <div className="relative bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
           {/* Banner */}
