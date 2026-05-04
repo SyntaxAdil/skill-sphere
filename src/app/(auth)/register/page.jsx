@@ -51,8 +51,8 @@ const Register = () => {
   const [showPass, setShowPass] = useState(false);
 
   return (
-    <section className="min-h-screen w-full flex items-center justify-center bg-gray-50 px-4">
-      <div className="w-full max-w-md my-25">
+    <section className="min-h-screen w-full flex items-center justify-center bg-gray-50 px-4 p-30 -mb-25">
+      <div className="w-full max-w-md ">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-extrabold text-gray-900 mb-1">
             Create your account

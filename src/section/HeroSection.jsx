@@ -18,8 +18,8 @@ const STATS = [
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#fafafa] flex items-center justify-center px-6 py-20">
-      {/* Grid background */}
+    <section className="relative min-h-screen overflow-hidden bg-[#fafafa] flex items-center justify-center px-6 py-18 md:py-25 lg:py-20">
+      
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
