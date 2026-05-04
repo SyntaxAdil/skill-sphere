@@ -10,6 +10,16 @@ import {
 } from "react-icons/fa";
 import EditProfile from "../../components/profile/EditProfile";
 import MyCourses from "./MyCourses";
+// meta
+export async function generateMetadata() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const name = session?.user?.name;
+  return {
+    title: name ? `${name} — Profile` : "My Profile",
+  };
+}
 
 const MyProfile = async () => {
   const session = await auth.api.getSession({
