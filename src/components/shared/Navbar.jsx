@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { FiLogOut, FiMenu, FiX } from "react-icons/fi";
-
 import { IoRocketSharp } from "react-icons/io5";
 import NavLink from "./../../utils/NavLink";
 import { authClient } from "../../lib/auth/auth-client";
@@ -15,6 +14,37 @@ const NAV_LINKS = [
   { href: "/courses", label: "Courses" },
   { href: "/profile", label: "My Profile" },
 ];
+
+// avatr
+const Avatar = ({ user, size = 32 }) => {
+  const initials = user?.name
+    ?.split(" ")
+    .slice(0, 2)
+    .map((i) => i[0].toUpperCase())
+    .join("") || "?";
+
+  const sizeClass = size === 30 ? "w-[30px] h-[30px] text-[10px]" : "w-8 h-8 text-[11px]";
+
+  if (user?.image) {
+    return (
+      <Image
+        src={user.image}
+        width={size}
+        height={size}
+        alt={user.name}
+        className={`rounded-full ring-2 ring-violet-200 cursor-pointer object-cover`}
+      />
+    );
+  }
+
+  return (
+    <div
+      className={`${sizeClass} rounded-full ring-2 ring-violet-200 bg-linear-to-br from-violet-600 to-violet-400 flex items-center justify-center text-white font-bold cursor-pointer shrink-0`}
+    >
+      {initials}
+    </div>
+  );
+};
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -56,33 +86,21 @@ export default function Navbar() {
               <span className="loading loading-spinner loading-sm text-violet-500" />
             ) : user ? (
               <>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Image
-                    src={user.image}
-                    width={32}
-                    height={32}
-                    alt={user.name}
-                    className="rounded-full ring-2 ring-violet-200 cursor-pointer"
-                  />
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Avatar user={user} size={32} />
                 </motion.div>
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
+                  onClick={async () => await authClient.signOut()}
                   className="flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-3 py-1.5 text-[13px] font-medium text-gray-400 transition-all hover:border-red-200 hover:text-red-500 hover:bg-red-50"
-                  onClick={async()=> await authClient.signOut()}
                 >
                   <FiLogOut size={13} />
                   Log out
                 </motion.button>
               </>
             ) : (
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
-              >
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
                 <Link
                   href="/login"
                   className="rounded-xl bg-linear-to-r from-violet-600 to-violet-400 px-4 py-1.5 text-[13px] font-semibold text-white transition-opacity hover:opacity-90"
@@ -98,15 +116,7 @@ export default function Navbar() {
             {isPending ? (
               <span className="loading loading-spinner loading-xs text-violet-500" />
             ) : (
-              user && (
-                <Image
-                  src={user.image}
-                  width={30}
-                  height={30}
-                  alt={user.name}
-                  className="rounded-full ring-2 ring-violet-200"
-                />
-              )
+              user && <Avatar user={user} size={30} />
             )}
             <motion.button
               whileTap={{ scale: 0.9 }}
@@ -168,7 +178,10 @@ export default function Navbar() {
                     <span className="loading loading-spinner loading-sm text-violet-500" />
                   </div>
                 ) : user ? (
-                  <button onClick={async()=> await authClient.signOut()} className="flex w-full items-center justify-center gap-2 rounded-xl border border-gray-200 py-2 text-[13px] font-medium text-gray-400 transition-all hover:border-red-200 hover:text-red-500 hover:bg-red-50">
+                  <button
+                    onClick={async () => await authClient.signOut()}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-gray-200 py-2 text-[13px] font-medium text-gray-400 transition-all hover:border-red-200 hover:text-red-500 hover:bg-red-50"
+                  >
                     <FiLogOut size={13} />
                     Log out
                   </button>

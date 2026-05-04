@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "../components/shared/Navbar";
 import Footer from "../components/shared/Footer";
 import { Toaster } from "react-hot-toast";
+import CourseProvider from "../context/MyCourseContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -14,7 +15,6 @@ export const metadata = {
   description:
     "A modern online learning platform where users can explore courses, watch lessons, and enroll in skill-based programs like Web Development, Design, Marketing, and more.",
 };
-
 export default function RootLayout({ children }) {
   return (
     <html
@@ -23,10 +23,12 @@ export default function RootLayout({ children }) {
       className={`${inter.className}  h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar></Navbar>
-        <main className="flex-1">{children}</main>
-        <Footer></Footer>
-        <Toaster position="top-center" reverseOrder={false} />
+        <CourseProvider>
+          <Navbar></Navbar>
+          <main className="flex-1">{children}</main>
+          <Footer></Footer>
+          <Toaster position="top-center" reverseOrder={false} />
+        </CourseProvider>
       </body>
     </html>
   );

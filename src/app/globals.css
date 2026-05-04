@@ -3,7 +3,12 @@
 @plugin "daisyui";
 
 .btn-primary ,
-.bg-primary{
+.bg-primary
+{
   background: #8437ff;
   border: 0;
+}
+.text-primary{
+
+  color: #8437ff;
 }

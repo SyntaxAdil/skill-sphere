@@ -12,8 +12,14 @@ const levelStyle = {
   Advanced: "text-red-500 bg-red-50 border-red-200",
 };
 
-export default function CourseCard({ course, index = 0 }) {
-  const { id, title, instructor, duration, rating, level, image, category } = course;
+export default function CourseCard({
+  course,
+  index = 0,
+  dltAccept = false,
+  removeCourse,
+}) {
+  const { id, title, instructor, duration, rating, level, image, category } =
+    course;
 
   return (
     <motion.div
@@ -33,9 +39,11 @@ export default function CourseCard({ course, index = 0 }) {
           alt={title}
           className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
-        <span className="absolute top-2.5 left-2.5 text-[11px] font-semibold
+        <span
+          className="absolute top-2.5 left-2.5 text-[11px] font-semibold
           px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm
-          text-violet-700 border border-violet-200">
+          text-violet-700 border border-violet-200"
+        >
           {category}
         </span>
       </div>
@@ -56,30 +64,48 @@ export default function CourseCard({ course, index = 0 }) {
             {rating}
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="flex items-center gap-1 text-[11.5px] font-medium
-              text-gray-500 bg-gray-50 border border-gray-100 rounded-lg px-2 py-0.5">
+            <span
+              className="flex items-center gap-1 text-[11.5px] font-medium
+              text-gray-500 bg-gray-50 border border-gray-100 rounded-lg px-2 py-0.5"
+            >
               <FiClock size={11} />
               {duration}
             </span>
-            <span className={`text-[11.5px] font-medium border rounded-lg px-2 py-0.5
-              ${levelStyle[level] ?? "text-gray-500 bg-gray-50 border-gray-100"}`}>
+            <span
+              className={`text-[11.5px] font-medium border rounded-lg px-2 py-0.5
+              ${levelStyle[level] ?? "text-gray-500 bg-gray-50 border-gray-100"}`}
+            >
               {level}
             </span>
           </div>
         </div>
 
         {/* Button */}
-        <Link href={`/courses/${id}`}>
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.97 }}
-            className="w-full py-2.5 rounded-xl text-[13px] font-semibold text-white
+        <div className="flex gap-2">
+          <Link href={`/courses/${id}`} className="flex-1">
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+              className="w-full py-2.5 rounded-xl text-[13px] font-semibold text-white
               bg-linear-to-r from-violet-600 to-violet-400
               transition-opacity hover:opacity-88 cursor-pointer"
-          >
-            View Details
-          </motion.button>
-        </Link>
+            >
+              View Details
+            </motion.button>
+          </Link>
+          {dltAccept && (
+            <motion.button
+              onClick={() => removeCourse(id)}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+              className="w-full py-2.5 rounded-xl text-[13px] font-semibold text-white
+              btn btn-error flex-1
+              transition-opacity hover:opacity-88 cursor-pointer"
+            >
+              Remove Course
+            </motion.button>
+          )}
+        </div>
       </div>
     </motion.div>
   );
