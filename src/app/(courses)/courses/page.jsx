@@ -1,7 +1,10 @@
 import React, { Suspense } from "react";
 import { getCourses } from "../../../lib/courses";
 import CoursesWrapper from "../../../components/couse/CoursesWrapper";
-
+export const metadata = {
+  title: "Courses - SkillSphere ",
+  
+};
 const AllCourses = async () => {
   const courses = await getCourses();
 
@@ -27,9 +30,13 @@ const AllCourses = async () => {
           </p>
         </div>
 
-        <Suspense fallback={<div className="min-h-screen w-full flex items-center justify-center ">
-          <p className="loading loading-bars" ></p>
-        </div>}>
+        <Suspense
+          fallback={
+            <div className="min-h-screen w-full flex items-center justify-center ">
+              <p className="loading loading-bars"></p>
+            </div>
+          }
+        >
           <CoursesWrapper courses={courses} />
         </Suspense>
       </div>

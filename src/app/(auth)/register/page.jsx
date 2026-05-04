@@ -35,14 +35,16 @@ const Register = () => {
         },
         onError: (ctx) => {
           setServerError(
-            ctx?.error?.message || "Something went wrong. Please try again."
+            ctx?.error?.message || "Something went wrong. Please try again.",
           );
         },
-      }
+      },
     );
 
     if (error) {
-      setServerError(error.message || "Something went wrong. Please try again.");
+      setServerError(
+        error.message || "Something went wrong. Please try again.",
+      );
     }
   };
 
@@ -61,7 +63,6 @@ const Register = () => {
         </div>
 
         <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
-
           {/* error */}
           {serverError && (
             <div className="flex items-start gap-2.5 bg-red-50 border border-red-200 text-red-600 rounded-xl px-4 py-3 mb-5 text-sm">
@@ -71,7 +72,6 @@ const Register = () => {
           )}
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-
             {/* Name */}
             <div className="space-y-1.5">
               <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
@@ -81,9 +81,10 @@ const Register = () => {
                 type="text"
                 placeholder="Your full name"
                 className={`w-full px-4 py-3 rounded-xl border text-sm outline-none focus:ring-2 transition-all bg-gray-50 placeholder-gray-300
-                  ${errors.name
-                    ? "border-red-300 focus:ring-red-200 focus:border-red-400"
-                    : "border-gray-200 focus:ring-violet-300 focus:border-violet-400"
+                  ${
+                    errors.name
+                      ? "border-red-300 focus:ring-red-200 focus:border-red-400"
+                      : "border-gray-200 focus:ring-violet-300 focus:border-violet-400"
                   }`}
                 {...register("name", { required: "Full name is required" })}
               />
@@ -104,9 +105,10 @@ const Register = () => {
                 type="email"
                 placeholder="you@example.com"
                 className={`w-full px-4 py-3 rounded-xl border text-sm outline-none focus:ring-2 transition-all bg-gray-50 placeholder-gray-300
-                  ${errors.email
-                    ? "border-red-300 focus:ring-red-200 focus:border-red-400"
-                    : "border-gray-200 focus:ring-violet-300 focus:border-violet-400"
+                  ${
+                    errors.email
+                      ? "border-red-300 focus:ring-red-200 focus:border-red-400"
+                      : "border-gray-200 focus:ring-violet-300 focus:border-violet-400"
                   }`}
                 {...register("email", {
                   required: "Email is required",
@@ -128,7 +130,9 @@ const Register = () => {
             <div className="space-y-1.5">
               <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
                 Photo URL
-                <span className="ml-1.5 normal-case font-normal text-gray-400">(optional)</span>
+                <span className="ml-1.5 normal-case font-normal text-gray-400">
+                  (optional)
+                </span>
               </label>
               <input
                 type="url"
@@ -148,9 +152,10 @@ const Register = () => {
                   type={showPass ? "text" : "password"}
                   placeholder="Create a strong password"
                   className={`w-full px-4 py-3 rounded-xl border text-sm outline-none focus:ring-2 transition-all bg-gray-50 placeholder-gray-300 pr-11
-                    ${errors.password
-                      ? "border-red-300 focus:ring-red-200 focus:border-red-400"
-                      : "border-gray-200 focus:ring-violet-300 focus:border-violet-400"
+                    ${
+                      errors.password
+                        ? "border-red-300 focus:ring-red-200 focus:border-red-400"
+                        : "border-gray-200 focus:ring-violet-300 focus:border-violet-400"
                     }`}
                   {...register("password", {
                     required: "Password is required",
@@ -199,7 +204,10 @@ const Register = () => {
           </div>
 
           {/* Google */}
-          <button className="w-full flex items-center justify-center gap-2.5 py-3 rounded-xl border border-gray-200 hover:border-violet-300 hover:bg-violet-50 text-sm font-semibold text-gray-700 transition-all cursor-pointer"  onClick={()=>signInUsingGoogle()}>
+          <button
+            className="w-full flex items-center justify-center gap-2.5 py-3 rounded-xl border border-gray-200 hover:border-violet-300 hover:bg-violet-50 text-sm font-semibold text-gray-700 transition-all cursor-pointer"
+            onClick={() => signInUsingGoogle()}
+          >
             <FaGoogle className="text-[#4285F4]" />
             Continue with Google
           </button>

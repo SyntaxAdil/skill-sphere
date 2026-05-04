@@ -59,6 +59,15 @@ const curriculum = [
   },
 ];
 
+export async function generateMetadata({ params, searchParams }, parent) {
+  const { id } = await params;
+  const course = await getCourseById(id);
+
+  return {
+    title: course.title,
+  };
+}
+
 const CourseDetails = async ({ params }) => {
   const { id } = await params;
   const course = await getCourseById(id);
