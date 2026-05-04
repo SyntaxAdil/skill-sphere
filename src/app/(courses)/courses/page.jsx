@@ -27,7 +27,9 @@ const AllCourses = async () => {
           </p>
         </div>
 
-        <Suspense fallback={<p className="loading"></p>}>
+        <Suspense fallback={<div className="min-h-screen w-full flex items-center justify-center ">
+          <p className="loading loading-bars" ></p>
+        </div>}>
           <CoursesWrapper courses={courses} />
         </Suspense>
       </div>
