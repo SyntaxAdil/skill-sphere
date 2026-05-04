@@ -8,7 +8,7 @@
 
 ## 🌐 Live URL
 
-🔗 [https://skill-sphere-adil.vercel.app](https://skill-sphere-adil.vercel.app)
+🔗 [https://skill-sphere-bd.vercel.app/]https://skill-sphere-bd.vercel.app/)
 
 ---
 
