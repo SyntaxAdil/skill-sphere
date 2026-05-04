@@ -14,6 +14,10 @@ export const metadata = {
   title: "SkillSphere – Online Learning Platform",
   description:
     "A modern online learning platform where users can explore courses, watch lessons, and enroll in skill-based programs like Web Development, Design, Marketing, and more.",
+
+  icons: {
+    icon: '/favicon.png',
+  }
 };
 export default function RootLayout({ children }) {
   return (
