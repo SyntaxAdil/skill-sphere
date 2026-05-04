@@ -8,6 +8,7 @@ import { FiLogOut, FiMenu, FiX } from "react-icons/fi";
 
 import { IoRocketSharp } from "react-icons/io5";
 import NavLink from "./../../utils/NavLink";
+import { authClient } from "../../lib/auth/auth-client";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -17,8 +18,10 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  //   dummy user
-  let user = false;
+
+  const { data: session, isPending } = authClient.useSession();
+  const user = session?.user;
+
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 px-4 pt-3 md:px-6">
@@ -31,7 +34,7 @@ export default function Navbar() {
               whileTap={{ scale: 0.95 }}
               className="flex h-8 w-8 items-center justify-center rounded-xl bg-linear-to-br from-violet-600 to-violet-400 shrink-0"
             >
-              <IoRocketSharp color="white"></IoRocketSharp>
+              <IoRocketSharp color="white" />
             </motion.span>
             <span className="text-xl font-bold tracking-tight text-gray-900">
               SkillSphere
@@ -49,7 +52,9 @@ export default function Navbar() {
 
           {/* Desktop actions */}
           <div className="hidden md:flex items-center gap-2">
-            {user ? (
+            {isPending ? (
+              <span className="loading loading-spinner loading-sm text-violet-500" />
+            ) : user ? (
               <>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
@@ -67,6 +72,7 @@ export default function Navbar() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
                   className="flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-3 py-1.5 text-[13px] font-medium text-gray-400 transition-all hover:border-red-200 hover:text-red-500 hover:bg-red-50"
+                  onClick={async()=> await authClient.signOut()}
                 >
                   <FiLogOut size={13} />
                   Log out
@@ -89,14 +95,18 @@ export default function Navbar() {
 
           {/* Mobile: avatar + hamburger */}
           <div className="flex md:hidden items-center gap-2">
-            {user && (
-              <Image
-                src={user.image}
-                width={30}
-                height={30}
-                alt={user.name}
-                className="rounded-full ring-2 ring-violet-200"
-              />
+            {isPending ? (
+              <span className="loading loading-spinner loading-xs text-violet-500" />
+            ) : (
+              user && (
+                <Image
+                  src={user.image}
+                  width={30}
+                  height={30}
+                  alt={user.name}
+                  className="rounded-full ring-2 ring-violet-200"
+                />
+              )
             )}
             <motion.button
               whileTap={{ scale: 0.9 }}
@@ -153,8 +163,12 @@ export default function Navbar() {
               </ul>
 
               <div className="border-t border-gray-100 p-2">
-                {user ? (
-                  <button className="flex w-full items-center justify-center gap-2 rounded-xl border border-gray-200 py-2 text-[13px] font-medium text-gray-400 transition-all hover:border-red-200 hover:text-red-500 hover:bg-red-50">
+                {isPending ? (
+                  <div className="flex justify-center py-2">
+                    <span className="loading loading-spinner loading-sm text-violet-500" />
+                  </div>
+                ) : user ? (
+                  <button onClick={async()=> await authClient.signOut()} className="flex w-full items-center justify-center gap-2 rounded-xl border border-gray-200 py-2 text-[13px] font-medium text-gray-400 transition-all hover:border-red-200 hover:text-red-500 hover:bg-red-50">
                     <FiLogOut size={13} />
                     Log out
                   </button>

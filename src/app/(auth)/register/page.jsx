@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { MdErrorOutline } from "react-icons/md";
-import { authClient } from "../../../lib/auth/auth-client";
+import { authClient, signInUsingGoogle } from "../../../lib/auth/auth-client";
 import toast from "react-hot-toast";
 
 const Register = () => {
@@ -199,7 +199,7 @@ const Register = () => {
           </div>
 
           {/* Google */}
-          <button className="w-full flex items-center justify-center gap-2.5 py-3 rounded-xl border border-gray-200 hover:border-violet-300 hover:bg-violet-50 text-sm font-semibold text-gray-700 transition-all cursor-pointer">
+          <button className="w-full flex items-center justify-center gap-2.5 py-3 rounded-xl border border-gray-200 hover:border-violet-300 hover:bg-violet-50 text-sm font-semibold text-gray-700 transition-all cursor-pointer"  onClick={()=>signInUsingGoogle()}>
             <FaGoogle className="text-[#4285F4]" />
             Continue with Google
           </button>
